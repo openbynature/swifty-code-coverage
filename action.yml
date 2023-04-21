@@ -55,7 +55,7 @@ runs:
 
     - name: Update libs
       run: |
-        sudo apt update && \
+        # sudo apt update && \
         # sudo apt upgrade \
         sudo apt install -y libtinfo5
       shell: bash
