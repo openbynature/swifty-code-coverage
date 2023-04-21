@@ -47,6 +47,10 @@ runs:
 
     - name: Generate coverage file
       run: |
+        ls -l
+
+        which llvm-cov
+
         sh $GITHUB_ACTION_PATH/lcov.sh \
           --build-path "${{ inputs.build-path }}" \
           --target "${{ inputs.target }}" \
