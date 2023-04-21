@@ -55,7 +55,9 @@ runs:
 
     - name: Symlink libclang.so (Linux)
       if: contains(matrix.os, 'ubuntu')
-      run: sudo ln -s libclang-11.so.1 /lib/x86_64-linux-gnu/libclang.so
+      run: |
+        # sudo ln -s libclang-11.so.1 /lib/x86_64-linux-gnu/libclang.so
+        sudo apt update && sudo apt install -y libtinfo5
       shell: bash
       working-directory: ${{ env.LLVM_PATH }}/lib
 
