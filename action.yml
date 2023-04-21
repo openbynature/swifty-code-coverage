@@ -32,22 +32,26 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Generate coverage file
-      uses: addnab/docker-run-action@v3
-      with:
-        image: snowstep/llvm
-        options: -v ${{ github.workspace }}:/var/www
-        run: |
-          ls -l
-          ls -l /var/www/.build/debug/
+    # - name: Cache LLVM and Clang
+    #   id: cache-llvm
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: |
+    #       C:/Program Files/LLVM
+    #       ./llvm
+    #     key: llvm-3.5
 
-          sh $GITHUB_ACTION_PATH/lcov.sh \
-            --build-path "/var/www/${{ inputs.build-path }}" \
-            --target "${{ inputs.target }}" \
-            --is-spm "${{ inputs.is-spm }}" \
-            --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
-            --output "/var/www/${{ inputs.output }}" | tee coverage.txt
-        shell: bash
+    - uses: KyleMayes/install-llvm-action@v1.8.0
+
+    - name: Generate coverage file
+      run: |
+        sh $GITHUB_ACTION_PATH/lcov.sh \
+          --build-path "/var/www/${{ inputs.build-path }}" \
+          --target "${{ inputs.target }}" \
+          --is-spm "${{ inputs.is-spm }}" \
+          --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
+          --output "/var/www/${{ inputs.output }}" | tee coverage.txt
+      shell: bash
 
     - name: Archive the code coverage file (lcov)
       if: always()
