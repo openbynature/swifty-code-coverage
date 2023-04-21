@@ -71,3 +71,8 @@ $LLVM_COV_CMD export \
   --instr-profile=$INSTR_PROFILE \
   --ignore-filename-regex=$IGNORE_FILENAME_REGEX \
   --format="lcov" > $OUTPUT_FILE
+
+llvm-cov export \
+  .build/debug/DeepLinkingPackageTests.xctest/Contents/MacOS/DeepLinkingPackageTests \
+  -instr-profile .build/debug/codecov/default.profdata \
+  -format="lcov" > $OUTPUT_FILE
