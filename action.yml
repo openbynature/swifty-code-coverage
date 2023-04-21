@@ -31,7 +31,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-      name: Generate coverage file
+    - name: Generate coverage file
       run: |
         sh $GITHUB_ACTION_PATH/lcov.sh \
           --build-path "${{ inputs.build-path }}" \
