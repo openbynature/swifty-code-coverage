@@ -39,6 +39,7 @@ runs:
           --is-spm "${{ inputs.is-spm }}" \
           --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
           --output "${{ inputs.output }}" | tee coverage.txt
+      shell: bash
 
     - name: Archive the code coverage file (lcov)
       if: always()
