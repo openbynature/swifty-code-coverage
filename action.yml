@@ -29,8 +29,7 @@ inputs:
     required: false
     default: "code-coverage-artifact"
 runs:
-  runs-on: ubuntu-latest
-  container: snowstep/llvm
+  using: "composite"
   steps:
     - name: Generate coverage file
       run: |
