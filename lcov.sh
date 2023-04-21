@@ -63,6 +63,7 @@ $LLVM_COV_CMD report \
   "$OBJECT_FILE" \
   --instr-profile=$INSTR_PROFILE \ 
   --ignore-filename-regex=$IGNORE_FILENAME_REGEX \
+  --enable-name-compression \
   --use-color
 
 # Export to code coverage file
@@ -70,9 +71,5 @@ $LLVM_COV_CMD export \
   "$OBJECT_FILE" \
   --instr-profile=$INSTR_PROFILE \
   --ignore-filename-regex=$IGNORE_FILENAME_REGEX \
+  --enable-name-compression \
   --format="lcov" > $OUTPUT_FILE
-
-llvm-cov export \
-  .build/debug/DeepLinkingPackageTests.xctest/Contents/MacOS/DeepLinkingPackageTests \
-  -instr-profile .build/debug/codecov/default.profdata \
-  -format="lcov" > $OUTPUT_FILE
