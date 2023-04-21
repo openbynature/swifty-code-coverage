@@ -53,15 +53,18 @@ fi
 mkdir -p $(dirname "$OUTPUT_FILE")
 
 LLVM_COV_CMD="llvm-cov"
-
+echo ""
 echo "DEBUG!!!"
+echo $(find $BUILD_PATH -name "*.profdata")
+echo ""
 cd .build/debug/
-ls -l 
+ls -l
+echo ""
 echo $OBJECT_FILE
 echo ""
-echo $(find $BUILD_PATH -name "*.profdata")
 echo $INSTR_PROFILE
 echo $OUTPUT_FILE
+echo ""
 
 # print to stdout
 $LLVM_COV_CMD report \
