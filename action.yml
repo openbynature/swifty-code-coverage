@@ -35,7 +35,7 @@ runs:
     - name: Generate coverage file
       uses: addnab/docker-run-action@v3
       with:
-        image: aschmelyun/cleaver:latest
+        image: snowstep/llvm
         options: -v ${{ github.workspace }}:/var/www
         run: |
           sh $GITHUB_ACTION_PATH/lcov.sh \
