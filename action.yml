@@ -39,8 +39,8 @@ runs:
         options: -v ${{ github.workspace }}:/var/www
         run: |
 
-          ls -l
-          
+          ls -l /var/www
+
           sh $GITHUB_ACTION_PATH/lcov.sh \
             --build-path "${{ inputs.build-path }}" \
             --target "${{ inputs.target }}" \
