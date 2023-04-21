@@ -54,7 +54,10 @@ runs:
         cached: ${{ steps.cache-llvm.outputs.cache-hit }}
 
     - name: Update libs
-      run: sudo apt update && sudo apt install -y libtinfo5
+      run: |
+        sudo apt update && \
+        sudo apt upgrade \
+        sudo apt install -y libtinfo5
       shell: bash
       working-directory: ${{ env.LLVM_PATH }}/lib
 
