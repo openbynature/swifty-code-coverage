@@ -53,14 +53,11 @@ fi
 mkdir -p $(dirname "$OUTPUT_FILE")
 
 LLVM_COV_CMD="llvm-cov"
-if [ "$RUNNER_OS" == "macOS" ]; then
-  LLVM_COV_CMD="xcrun llvm-cov"
-fi
 
 # print to stdout
 $LLVM_COV_CMD report \
   "$OBJECT_FILE" \
-  --instr-profile=$INSTR_PROFILE \
+  --instr-profile=$INSTR_PROFILE \ 
   --ignore-filename-regex=$IGNORE_FILENAME_REGEX \
   --use-color
 
@@ -70,3 +67,6 @@ $LLVM_COV_CMD export \
   --instr-profile=$INSTR_PROFILE \
   --ignore-filename-regex=$IGNORE_FILENAME_REGEX \
   --format="lcov" > $OUTPUT_FILE
+
+echo $(swift test --show-codecov-path | xargs dirname)
+echo $(swift test --show-test-binary-path)
