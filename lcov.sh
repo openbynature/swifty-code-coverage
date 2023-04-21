@@ -58,6 +58,8 @@ echo "DEBUG!!!"
 cd .build/debug/
 ls -l 
 echo $OBJECT_FILE
+echo ""
+echo $(find $BUILD_PATH -name "*.profdata")
 echo $INSTR_PROFILE
 echo $OUTPUT_FILE
 
