@@ -33,8 +33,12 @@ runs:
   steps:
       name: Generate coverage file
       run: |
-        sh $GITHUB_ACTION_PATH/lcov.sh --build-path "${{ inputs.build-path }}" --target "${{ inputs.target }}" --is-spm "${{ inputs.is-spm }}" --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" --output "${{ inputs.output }}" | tee coverage.txt
-      shell: bash
+        sh $GITHUB_ACTION_PATH/lcov.sh \
+          --build-path "${{ inputs.build-path }}" \
+          --target "${{ inputs.target }}" \
+          --is-spm "${{ inputs.is-spm }}" \
+          --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
+          --output "${{ inputs.output }}" | tee coverage.txt
 
     - name: Archive the code coverage file (lcov)
       if: always()
