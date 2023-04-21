@@ -54,7 +54,7 @@ mkdir -p $(dirname "$OUTPUT_FILE")
 
 LLVM_COV_CMD="llvm-cov"
 
-echo $OBJECT_FILE
+ls -l $OBJECT_FILE
 echo $INSTR_PROFILE
 echo $OUTPUT_FILE
 
