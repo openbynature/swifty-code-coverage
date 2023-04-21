@@ -54,7 +54,8 @@ mkdir -p $(dirname "$OUTPUT_FILE")
 
 LLVM_COV_CMD="llvm-cov"
 
-ls -l $OBJECT_FILE
+ls -l build/x86_64-unknown-linux-gnu/debug/DeepLinkingPackageTests.xctest
+echo $OBJECT_FILE
 echo $INSTR_PROFILE
 echo $OUTPUT_FILE
 
