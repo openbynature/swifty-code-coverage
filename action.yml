@@ -53,8 +53,7 @@ runs:
         directory: ${{ inputs.llvm-install-path }}
         cached: ${{ steps.cache-llvm.outputs.cache-hit }}
 
-    - name: Symlink libclang.so (Linux)
-      if: contains(matrix.os, 'ubuntu')
+    - name: Symlink libclang.so
       run: |
         # sudo ln -s libclang-11.so.1 /lib/x86_64-linux-gnu/libclang.so
         sudo apt update && sudo apt install -y libtinfo5
