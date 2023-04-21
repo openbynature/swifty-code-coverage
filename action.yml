@@ -29,10 +29,9 @@ inputs:
     required: false
     default: "code-coverage-artifact"
 runs:
-  using: "composite"
+  using: docker://snowstep/llvm
   steps:
     - name: Generate coverage file
-      uses: docker://snowstep/llvm
       run: |
         sh $GITHUB_ACTION_PATH/lcov.sh \
           --build-path "${{ inputs.build-path }}" \
