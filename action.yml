@@ -48,6 +48,7 @@ runs:
             --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
             --output "${{ inputs.output }}" | tee coverage.txt
         shell: bash
+        working-directory: ${{ github.workspace }}
 
     - name: Archive the code coverage file (lcov)
       if: always()
