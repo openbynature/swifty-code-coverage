@@ -36,10 +36,10 @@ runs:
       uses: addnab/docker-run-action@v3
       with:
         image: snowstep/llvm
-        options: -v ${{ github.workspace }}:~/coverage
+        options: -v ${{ github.workspace }}:/var/www
         run: |
 
-          ls -l ~/coverage/.build/debug/
+          ls -l /var/www/.build/debug/
 
           sh $GITHUB_ACTION_PATH/lcov.sh \
             --build-path "${{ inputs.build-path }}" \
