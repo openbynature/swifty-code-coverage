@@ -38,6 +38,9 @@ runs:
         image: snowstep/llvm
         options: -v ${{ github.workspace }}:/var/www
         run: |
+
+          ls -l
+          
           sh $GITHUB_ACTION_PATH/lcov.sh \
             --build-path "${{ inputs.build-path }}" \
             --target "${{ inputs.target }}" \
