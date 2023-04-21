@@ -38,15 +38,15 @@ runs:
         image: snowstep/llvm
         options: -v ${{ github.workspace }}:/var/www
         run: |
-
+          ls -l
           ls -l /var/www/.build/debug/
 
           sh $GITHUB_ACTION_PATH/lcov.sh \
-            --build-path "${{ inputs.build-path }}" \
+            --build-path "/var/www/${{ inputs.build-path }}" \
             --target "${{ inputs.target }}" \
             --is-spm "${{ inputs.is-spm }}" \
             --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
-            --output "${{ inputs.output }}" | tee coverage.txt
+            --output "/var/www/${{ inputs.output }}" | tee coverage.txt
         shell: bash
 
     - name: Archive the code coverage file (lcov)
