@@ -29,18 +29,22 @@ inputs:
     required: false
     default: "code-coverage-artifact"
 runs:
-  using: docker
-  image: snowstep/llvm
+  using: composite
   steps:
+    
     - name: Generate coverage file
-      run: |
-        sh $GITHUB_ACTION_PATH/lcov.sh \
-          --build-path "${{ inputs.build-path }}" \
-          --target "${{ inputs.target }}" \
-          --is-spm "${{ inputs.is-spm }}" \
-          --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
-          --output "${{ inputs.output }}" | tee coverage.txt
-      shell: bash
+      uses: addnab/docker-run-action@v3
+        with:
+          image: aschmelyun/cleaver:latest
+          options: -v ${{ github.workspace }}:/var/www
+          run: |
+            sh $GITHUB_ACTION_PATH/lcov.sh \
+              --build-path "${{ inputs.build-path }}" \
+              --target "${{ inputs.target }}" \
+              --is-spm "${{ inputs.is-spm }}" \
+              --ignore-filename-regex "${{ inputs.ignore-filename-regex }}" \
+              --output "${{ inputs.output }}" | tee coverage.txt
+          shell: bash
 
     - name: Archive the code coverage file (lcov)
       if: always()
