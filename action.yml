@@ -30,6 +30,7 @@ inputs:
     default: "code-coverage-artifact"
 runs:
   using: "composite"
+  container: snowstep/llvm
   steps:
     - name: Generate coverage file
       run: |
