@@ -53,9 +53,6 @@ fi
 mkdir -p $(dirname "$OUTPUT_FILE")
 
 LLVM_COV_CMD="llvm-cov"
-if [ "$RUNNER_OS" == "macOS" ]; then
-  LLVM_COV_CMD="xcrun llvm-cov"
-fi
 
 # print to stdout
 $LLVM_COV_CMD report \
