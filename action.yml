@@ -31,8 +31,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: docker://snowstep/llvm
     - name: Generate coverage file
+      uses: docker://snowstep/llvm
       run: |
         sh $GITHUB_ACTION_PATH/lcov.sh \
           --build-path "${{ inputs.build-path }}" \
