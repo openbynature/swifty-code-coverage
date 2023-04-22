@@ -56,7 +56,7 @@ LLVM_COV_CMD="llvm-cov"
 
 echo ""
 echo "DEBUG!!!"
-echo $(find $BUILD_PATH -name "*.profdata")
+echo $(find $BUILD_PATH -name "DeepLinkingPackageTests")
 echo ""
 ls -l .build/debug/
 echo ""
