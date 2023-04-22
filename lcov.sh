@@ -56,7 +56,8 @@ LLVM_COV_CMD="llvm-cov"
 
 echo ""
 echo "DEBUG!!!"
-echo $(find $BUILD_PATH -name "DeepLinkingPackageTests")
+echo $(find $BUILD_PATH -name "*.profraw")
+echo $(find $BUILD_PATH -name "*.profdata")
 echo ""
 ls -l .build/debug/codecov
 echo ""
@@ -79,5 +80,4 @@ $LLVM_COV_CMD export \
   "$OBJECT_FILE" \
   --instr-profile=$INSTR_PROFILE \
   --ignore-filename-regex=$IGNORE_FILENAME_REGEX \
-  --enable-name-compression \
   --format="lcov" > $OUTPUT_FILE
