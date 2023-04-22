@@ -58,7 +58,7 @@ echo ""
 echo "DEBUG!!!"
 echo $(find $BUILD_PATH -name "DeepLinkingPackageTests")
 echo ""
-ls -l .build/debug/
+ls -l .build/debug/codecov
 echo ""
 echo $OBJECT_FILE
 echo ""
