@@ -40,29 +40,33 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Cache LLVM and Clang
-      id: cache-llvm
-      uses: actions/cache@v3
-      with:
-        path: ${{ inputs.llvm-install-path }}
-        key: llvm-${{ inputs.llvm-version }}
+    # - name: Cache LLVM and Clang
+    #   id: cache-llvm
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: ${{ inputs.llvm-install-path }}
+    #     key: llvm-${{ inputs.llvm-version }}
 
-    - uses: KyleMayes/install-llvm-action@v1.8.0
-      with:
-        version: ${{ inputs.llvm-version }}
-        directory: ${{ inputs.llvm-install-path }}
-        cached: ${{ steps.cache-llvm.outputs.cache-hit }}
+    # - uses: KyleMayes/install-llvm-action@v1.8.0
+    #   with:
+    #     version: ${{ inputs.llvm-version }}
+    #     directory: ${{ inputs.llvm-install-path }}
+    #     cached: ${{ steps.cache-llvm.outputs.cache-hit }}
 
-    - name: Update libs
-      run: |
-        # sudo apt update && \
-        # sudo apt upgrade \
-        sudo apt install -y libtinfo5
-      shell: bash
-      working-directory: ${{ env.LLVM_PATH }}/lib
+    # - name: Update libs
+    #   run: |
+    #     # sudo apt update && \
+    #     # sudo apt upgrade \
+    #     # sudo apt install -y libtinfo5
+
+    #   shell: bash
+    #   working-directory: ${{ env.LLVM_PATH }}/lib
 
     - name: Generate coverage file
       run: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
+        brew install llvm && \
+        PATH="$PATH:$(brew --prefix llvm)/bin" && \
         sh $GITHUB_ACTION_PATH/lcov.sh \
           --build-path "${{ inputs.build-path }}" \
           --target "${{ inputs.target }}" \
